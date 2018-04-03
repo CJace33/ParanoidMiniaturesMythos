@@ -1,9 +1,24 @@
 fileFormatVersion: 2
 guid: 35bc68c20c0aeeb4d970eccd09209104
-timeCreated: 1521763657
+timeCreated: 1522414640
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: custos faction sleeve side_0
+    21300002: custos faction sleeve side_1
+    21300004: custos faction sleeve side_2
+    21300006: custos faction sleeve side_3
+    21300008: custos faction sleeve side_4
+    21300010: custos faction sleeve side_5
+    21300012: custos faction sleeve side_6
+    21300014: custos faction sleeve side_7
+    21300016: custos faction sleeve side_8
+    21300018: custos faction sleeve side_9
+    21300020: custos faction sleeve side_10
+    21300022: custos faction sleeve side_11
+    21300024: custos faction sleeve side_12
+    21300026: custos faction sleeve side_13
+    21300028: custos faction sleeve side_14
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -40,7 +55,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -65,9 +80,41 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: custos faction sleeve side_11
+      rect:
+        serializedVersion: 2
+        x: 246
+        y: 40
+        width: 2187
+        height: 610
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
