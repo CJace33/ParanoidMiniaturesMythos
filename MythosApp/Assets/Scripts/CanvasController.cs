@@ -7,7 +7,7 @@ public class CanvasController : MonoBehaviour {
 
     Stack canvasStack = new Stack();
     public Canvas mainMenu;
-    public Canvas[] allCanvases;
+    public List<Canvas> allCanvases = new List<Canvas>();
     
 	void Start () {
         canvasStack.Push(mainMenu);

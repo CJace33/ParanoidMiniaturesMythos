@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MasterScript : MonoBehaviour {
-
-    public Everything everything = new Everything();
+public class MasterScript : MonoBehaviour
+{
+    List<PartyMember> partyMembers = new List<PartyMember>();
+    public GameObject cards, cardPrefab;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
 		
 	}
 	
@@ -15,46 +17,45 @@ public class MasterScript : MonoBehaviour {
 	void Update () {
 		
 	}
+    
+    void PopulateCards()
+    {
+        foreach (PartyMember member in partyMembers)
+        {
+            //For each card, instantiate a new card
+            GameObject newCard = Object.Instantiate(cardPrefab);
+            //And put it in the correct card-section
+            newCard.transform.parent = cards.transform;
+            //Then run its intialisation function with the correct values:
+            newCard.GetComponent<CardInfo>().Initialise(member);
+
+        }
+    }
 
 
+    void SerialiseFirstJson()
+    {
+        PartyMembersContainer container = new PartyMembersContainer();
+        PartyMember member = new PartyMember();
 
+        member.cardName = "cardnamehere";
+        member.faction = FactionEnmum.Custos_Crypta;
+        member.unflippedSprite = "unflippedSprite.png";
+        member.flippedSprite = "flippedSprite.png";
+        member.woundsCardSprite = "woundsCardSprite.png";
 
+        member.unflippedValues = {0,0,0,0,0,0,0,,0,0,0};
+        member.flippedValues;
 
+    container.members.Add(member);
 
-
-
-
+    }
 }
 
-public enum KeywordsEnmum
-{
-    Human,
-    Female,
-    Male,
-    Myth,
-    Leader,
-    Insect,
 
-}
 
-public enum AttackTypeEnmum
-{
-    COM,
-    RAN,
-    ARC
-}
 
-public enum MythosConditionEnmum
-{
-    Bleed,
-    Blind,
-    Burn,
-    Drain,
-    Fatigue,
-    Haemorrage,
-    Paralysed,
-    Vigour
-}
+
 
 public enum FactionEnmum
 {
@@ -65,109 +66,25 @@ public enum FactionEnmum
     Wildborn
 }
 
-public enum BaseSizeEnum
+
+[System.Serializable]
+public class PartyMembersContainer
 {
-    ThirtyMM,
-    FortyMM,
-    FiftyMM,
-    SixtyMM,
-    SeventyFiveMM
+    public List<PartyMember> members = new List<PartyMember>();
 }
 
-//Holds lists of all other JSON serialisable classes
-[System.Serializable]
-public class Everything
-{
-    public List<Faction> factions = new List<Faction>();
-    public List<Party> parties = new List<Party>();
-    //public List<Attacks> attacks = new List<Attacks>();
-    //public List<MythosAbilities> mythosAbilities = new List<MythosAbilities>();
-    //public List<CharacterTraits> characterTraits = new List<CharacterTraits>();
-}
 
-//Holds the Unit information for each faction
 [System.Serializable]
-public class Faction
+public class PartyMember
 {
-    public List<Unit> units = new List<Unit>();
-}
-
-//holds the unit variables
-[System.Serializable]
-public class Unit
-{
-    //Each array should have 1/2 things in it, the first value should be its unflipped value, and the second should be its flipped value (if applicable, if not then it should only have 1)
-
-    public string[] name;
     public FactionEnmum faction;
-    public KeywordsEnmum[] keywords;
-    public int[] movement;
-    public int[] charge;
-    public int[] combatAttack;
-    public int[] combatDefence;
-    public int[] rangeAttack;
-    public int[] rangeDefence;
-    public int[] arcaneAttack;
-    public int[] arcaneDefence;
-    public int[] mythos;
-    public int[] wounds;
-    public int[] sanity;
-    public int[] sanityThrshhold;
-    public bool flipWhenReached; //stores if the card automatically flips when the threshhold is reached
-    public Attacks[] attacks;
-    public Attacks[] flippedAttacks;
-    public MythosAbilities[] mythosAbilities;
-    public MythosAbilities[] flippedMythosAbilities;
-    public CharacterTraits[] characterTraits;
-    public CharacterTraits[] flippedCharacterTraits;
-    public BaseSizeEnum baseSize;
-    public int actionPointsBase;
-    public int actionPointsRemaining;
-    public bool activated;//stores if it has been activated yet, resets each round
-    public bool flipped;//Stores if the character has been flipped
-    public int cost;//unused for now, used for if/when army builders are introduced
+    public string cardName;
+    public string unflippedSprite, flippedSprite, woundsCardSprite;
 
-}
+    public int[] unflippedValues;
+    public int[] flippedValues;
 
-//holds collections of units from individual faction
-[System.Serializable]
-public class Party
-{
-    public List<Unit> partyList = new List<Unit>();
-}
 
-//holds attacks and their properties
-[System.Serializable]
-public class Attacks
-{
-    public string attackName;
-    public AttackTypeEnmum attackType;
-    public string range;
-    public MythosConditionEnmum mythosCondition;
-}
-
-//holds mythos abilities and their properties
-[System.Serializable]
-public class MythosAbilities
-{
-    public string mythosName;
-    public int mythosCost;
-    public string mythosDescription;
-    public bool oncePerGame;//should be true if the ability is usable only once per game
-    public bool used;//ticked once a once per game use is used
-}
-
-//holds character traits and their properties
-[System.Serializable]
-public class CharacterTraits
-{
-    public string traitName;
-    public string traitDescription;
-}
-
-//holds Final Form traits and their properties
-[System.Serializable]
-public class FinalForm
-{
-    public string name;
+    //public int U_MOV1, U_MOV2, U_COM1, U_COM2, U_RAN1, U_RAN2, U_ARC1, U_ARC2, U_MYT, U_SAN;
+    //public int F_MOV1, F_MOV2, F_COM1, F_COM2, F_RAN1, F_RAN2, F_ARC1, F_ARC2, F_MYT, F_SAN;
 }
