@@ -1,0 +1,37 @@
+{
+    "members": [
+        {
+            "faction": 0,
+            "cardName": "Blood",
+            "unflippedSprite": "blood front.png",
+            "flippedSprite": "blood back.png",
+            "woundsCardSprite": "woundsCardSprite.png",
+            "unflippedValues": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "flippedValues": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
+        }
+    ]
+}
